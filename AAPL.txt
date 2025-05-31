@@ -1,0 +1,6 @@
+Stock: AAPL
+Current Price: $200.85
+High Price: $201.96
+Low Price: $196.78
+Open Price: $199.37
+Previous Close: $199.95

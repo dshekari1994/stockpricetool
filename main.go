@@ -50,4 +50,24 @@ func main() {
 	fmt.Printf("Low Price: $%.2f\n", quote.LowPrice)
 	fmt.Printf("Open Price: $%.2f\n", quote.OpenPrice)
 	fmt.Printf("Previous Close: $%.2f\n", quote.PreviousClose)
+
+	//Save data to a file
+	filename := fmt.Sprintf("%s.txt", symbol)
+	file, err := os.Create(filename)
+	if err != nil {
+		log.Fatalf("Failed to create file: %v", err)
+	}
+	defer file.Close()
+
+	_, err = fmt.Fprintf(file, "Stock: %s\n", symbol)
+	_, err = fmt.Fprintf(file, "Current Price: $%.2f\n", quote.CurrentPrice)
+	_, err = fmt.Fprintf(file, "High Price: $%.2f\n", quote.HighPrice)
+	_, err = fmt.Fprintf(file, "Low Price: $%.2f\n", quote.LowPrice)
+	_, err = fmt.Fprintf(file, "Open Price: $%.2f\n", quote.OpenPrice)
+	_, err = fmt.Fprintf(file, "Previous Close: $%.2f\n", quote.PreviousClose)
+	if err != nil {
+		log.Fatalf("Failed to write to file: %v", err)
+	}
+
+	fmt.Printf("Data saved to %s\n", filename)
 }
